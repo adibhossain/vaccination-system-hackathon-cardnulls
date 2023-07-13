@@ -1,1 +1,0 @@
-# vaccination-system-hackathon-cardnulls

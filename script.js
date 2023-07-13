@@ -10,9 +10,17 @@ const element = document.createElement('div');
     <p>Date: ${date}</p>
     `;
 
-    html2pdf()
-    .from(element)
-    .save('certificate.pdf');
+    try{
+        html2pdf()
+        .from(element)
+        .save('certificate.pdf');
+    }
+    catch(error){
+        console.log(error);
+    }
+    
+
+    return element;
 }
 
     function generateForm(name, id,vac_id, vaccine, date) {
@@ -26,9 +34,16 @@ const element = document.createElement('div');
     <p> Scheduled Date: ${date}</p>
     `;
 
-    html2pdf()
-    .from(element)
-    .save('form.pdf');
+    try{
+        html2pdf()
+        .from(element)
+        .save('form.pdf');
+    }
+    catch(error){
+        console.log(error);
+    }
+
+    return element;
 }
 
 
@@ -45,4 +60,10 @@ function showConfirmationModal() {
     const modal = new bootstrap.Modal(document.getElementById('confirmationModal'));
     modal.show();
 }
+
+module.exports = {
+    generateCertificate,
+    generateForm,
+    showConfirmationModal
+  };
 

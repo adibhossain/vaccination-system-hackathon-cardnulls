@@ -1,3 +1,11 @@
+<?php 
+
+session_start();
+
+if (isset($_SESSION['id']) && isset($_SESSION['user_name']) && isset($_SESSION['nid']) && isset($_SESSION['user_type'])) {
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -130,3 +138,15 @@
 </body>
 
 </html>
+
+
+<?php 
+}else{
+
+header("Location: ../logout.php");
+
+exit();
+
+}
+
+?>

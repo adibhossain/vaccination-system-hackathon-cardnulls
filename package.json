@@ -1,0 +1,19 @@
+{
+  "name": "vaccination-system-hackathon-cardnulls",
+  "version": "1.0.0",
+  "description": "Hehe",
+  "main": "login.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.6.1",
+    "jsdom": "^22.1.0"
+  },
+  "dependencies": {
+    "html2pdf.js": "^0.10.1"
+  }
+}

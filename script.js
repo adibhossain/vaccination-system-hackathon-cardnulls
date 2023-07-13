@@ -44,3 +44,13 @@ function showConfirmationModal() {
     modal.show();
 }
 
+function sum(a,b) {
+    return a+b;
+}
+
+module.exports = {
+    sum,
+    generateCertificate,
+    generateForm,
+    showConfirmationModal
+  };

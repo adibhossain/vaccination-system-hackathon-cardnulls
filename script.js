@@ -1,10 +1,11 @@
 
-    function generateCertificate(name, id, vaccine, date) {
+    function generateCertificate(name, id, vac_id, vaccine, date) {
 const element = document.createElement('div');
     element.innerHTML = `
     <h1>Vaccination Certificate</h1>
     <p>Name: ${name}</p>
-    <p>ID: ${id}</p>
+    <p>NID: ${id}</p>
+    <p>Vaccine ID: ${vac_id}</p>
     <p>Vaccine: ${vaccine}</p>
     <p>Date: ${date}</p>
     `;
@@ -14,14 +15,15 @@ const element = document.createElement('div');
     .save('certificate.pdf');
 }
 
-    function generateForm(name, id, vaccine, date) {
+    function generateForm(name, id,vac_id, vaccine, date) {
 const element = document.createElement('div');
     element.innerHTML = `
     <h1>Vaccination Certificate</h1>
     <p>Name: ${name}</p>
-    <p>ID: ${id}</p>
+    <p>NID: ${id}</p>
+    <p>Vaccine ID: ${vac_id}</p>
     <p>Vaccine: ${vaccine}</p>
-    <p>Date: ${date}</p>
+    <p> Scheduled Date: ${date}</p>
     `;
 
     html2pdf()

@@ -3,7 +3,9 @@
 session_start();
 
 if (isset($_SESSION['id']) && isset($_SESSION['user_name']) && isset($_SESSION['nid']) && isset($_SESSION['user_type'])) {
-
+$user_id=$_SESSION['id'];
+$user_name=$_SESSION['user_name'];
+$nid=$_SESSION['nid'];
 ?>
 
 <!DOCTYPE html>
@@ -81,38 +83,80 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name']) && isset($_SESSION['
         <div class="row">
 			
       <div class="col-md-6 offset-md-3">
-		  
-		  <div class="card">
+		  <?php
+            include_once 'db_conn.php';
+            $result = mysqli_query($conn, "SELECT * FROM vaccination where status='0' AND user_id = '$user_id'");
+            
+            ?>
+            <?php
+            if (mysqli_num_rows($result) > 0) {
+            ?>
+            <?php
+              $i = 0;
+              while ($row = mysqli_fetch_array($result)) {
+                $subresult = mysqli_query($conn, "SELECT * FROM vaccine where vaccine_id= '$row[vaccine_id]'");
+                $subrow = mysqli_fetch_array($subresult);
+                $vaccine_id=$row["vaccine_id"];
+                $vaccine_name=$subrow["vaccine_name"];
+                $vaccination_date=$row["vaccination_date"];
+              ?>
+
+		        <div class="card">
               <div class="card-body d-flex justify-content-between">
-                <h5 class="card-title">Vaccine: HIV</h5>
-                <p class="card-text">Date: July 25, 2023</p>
-                <a class="btn btn-primary" onclick="generateForm('John Doe', '12345', 'COVID-19', 'January 15, 2022')">Form</a>
+                <h5 class="card-title">Vaccine: <?php echo $subrow["vaccine_name"]; ?></h5>
+                <p class="card-text">Date: <?php echo $row["vaccination_date"]; ?></p>
+                <a class="btn btn-primary" onclick="generateForm( '<?php echo $user_name?>' , '<?php echo $nid?>' ,'<?php echo $vaccine_id?>',  '<?php echo $vaccine_name?>' , '<?php echo $vaccination_date?>')">Form</a>
               </div>
             </div>
-		  
-        <div class="card">
-          <div class="card-body d-flex justify-content-between">
-            <h5 class="card-title">Vaccine: COVID-19</h5>
-			<p class="card-text">Date: January 15, 2022</p>
-            <a  class="btn btn-primary" onclick="generateCertificate('John Doe', '12345', 'COVID-19', 'January 15, 2022')">Certificate</a>
-          </div>
-        </div>
 
-        <div class="card">
-          <div class="card-body d-flex justify-content-between">
-            <h5 class="card-title">Vaccine: Influenza</h5>
-			<p class="card-text">Date: October 2, 2021</p> 
-           <a class="btn btn-primary" onclick="generateCertificate('John Doe', '12345', 'COVID-19', 'January 15, 2022')">Certificate</a>
-          </div>
-        </div>
+            <?php
+                $i++;
+              }
+              ?>
+            <?php
+            } else {
+              echo "No result found";
+            }
+            ?>   
 
-        <div class="card">
-          <div class="card-body d-flex justify-content-between">
-            <h5 class="card-title">Vaccine: Hepatitis B</h5>
-			<p class="card-text">Date: March 7, 2020</p>
-           <a class="btn btn-primary" onclick="generateCertificate('John Doe', '12345', 'COVID-19', 'January 15, 2022')">Certificate</a>
-          </div>
-        </div>
+
+<?php
+            include_once 'db_conn.php';
+            $result = mysqli_query($conn, "SELECT * FROM vaccination where status='1' AND user_id = '$user_id'");
+            
+            ?>
+            <?php
+            if (mysqli_num_rows($result) > 0) {
+            ?>
+            <?php
+              $i = 0;
+              while ($row = mysqli_fetch_array($result)) {
+                $subresult = mysqli_query($conn, "SELECT * FROM vaccine where vaccine_id = '$row[vaccine_id]' ");
+                $subrow = mysqli_fetch_array($subresult);
+                $vaccine_id=$row["vaccine_id"];
+                $vaccine_name=$subrow["vaccine_name"];
+                $vaccination_date=$row["vaccination_date"];
+              ?>
+
+		        <div class="card">
+              <div class="card-body d-flex justify-content-between">
+                <h5 class="card-title">Vaccine: <?php echo $subrow["vaccine_name"]; ?></h5>
+                <p class="card-text">Date: <?php echo $row["vaccination_date"]; ?></p>
+                <a class="btn btn-primary" onclick="generateCertificate('<?php echo $user_name?>' , '<?php echo $nid?>' ,'<?php echo $vaccine_id?>', '<?php echo $vaccine_name?>' , '<?php echo $vaccination_date?>' )">Certificate</a>
+              </div>
+            </div>
+
+            <?php
+                $i++;
+              }
+              ?>
+            <?php
+            } else {
+              echo "No result found";
+            }
+            ?>  
+
+        
       </div>
     </div>
     </div>

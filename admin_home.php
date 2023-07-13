@@ -6,6 +6,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name']) && isset($_SESSION['
 
 ?>
 
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,39 +72,14 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name']) && isset($_SESSION['
         </div>
       </nav>
 	
-    <div class="container">
+      <div class="container">
         <h1 class="mb-4">Vaccination Confirmation</h1>
-        <form>
-            <div class="mb-3">
-                <label for="userId" class="form-label">User ID:</label>
-                <input type="text" class="form-control" id="userId" name="userId">
+        <form action="vaccine_details.php" method="GET" class="mt-4">
+            <div class="input-group">
+                <input type="text" class="form-control" id="vaccineId" placeholder="Enter Vaccine ID" name="vaccineId" required>
+                <button type="submit" class="btn btn-primary">Search</button>
             </div>
-            <button type="button" class="btn btn-primary" onclick="showConfirmationModal()">Search</button>
         </form>
-
-        <!-- Confirmation Modal -->
-        <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-					
-                    <div class="modal-body">
-                        <p><strong>User Name:</strong> <span id="userName"></span></p>
-						<p><strong>NID:</strong> <span id="nid"></span></p>
-                        <p><strong>Vaccine Name:</strong> <span id="vaccineName"></span></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Confirm</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
     <!-- Bootstrap JS -->

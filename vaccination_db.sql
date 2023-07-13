@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2023 at 01:53 PM
+-- Generation Time: Jul 13, 2023 at 07:53 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -43,7 +43,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `user_name`, `nid`, `dob`, `address`, `password`, `user_type`) VALUES
 (1, 'Admin', '1', NULL, NULL, '1234', 0),
-(2, 'Khaled', '12344567891011', '2000-07-13', 'Wari', '1234', 1);
+(2, 'Khaled', '12344567891011', '2000-07-13', 'Wari', '1234', 1),
+(1239, 'Jamal Uddin Tanvin', '1234567890', '2000-10-17', 'Dolairpar', '123456', 1);
 
 -- --------------------------------------------------------
 
@@ -58,6 +59,17 @@ CREATE TABLE `vaccination` (
   `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `vaccination`
+--
+
+INSERT INTO `vaccination` (`user_id`, `vaccine_id`, `vaccination_date`, `status`) VALUES
+(2, 18, '2023-07-13', 1),
+(2, 19, '2023-07-13', 1),
+(2, 20, '2023-07-13', 1),
+(1239, 21, '2023-07-13', 1),
+(1239, 22, '2023-07-13', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -68,6 +80,18 @@ CREATE TABLE `vaccine` (
   `vaccine_id` int(255) NOT NULL,
   `vaccine_name` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `vaccine`
+--
+
+INSERT INTO `vaccine` (`vaccine_id`, `vaccine_name`) VALUES
+(17, 'COVID-19'),
+(18, 'COVID-19'),
+(19, 'Influenza'),
+(20, 'Hepatitis B'),
+(21, 'Tetanus'),
+(22, 'Hepatitis B');
 
 --
 -- Indexes for dumped tables
@@ -100,13 +124,13 @@ ALTER TABLE `vaccine`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1236;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1240;
 
 --
 -- AUTO_INCREMENT for table `vaccine`
 --
 ALTER TABLE `vaccine`
-  MODIFY `vaccine_id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `vaccine_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

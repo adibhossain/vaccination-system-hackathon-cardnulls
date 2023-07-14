@@ -1,0 +1,29 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:80
+    depends_on:
+      - db
+    networks:
+      - my-network
+
+  db:
+    image: mysql:8.0
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: your-root-password
+      MYSQL_DATABASE: your-database-name
+      MYSQL_USER: your-username
+      MYSQL_PASSWORD: your-password
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    networks:
+      - my-network
+
+networks:
+  my-network:

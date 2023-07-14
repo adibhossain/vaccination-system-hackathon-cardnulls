@@ -1,17 +1,32 @@
 <?php
 
-$sname= "localhost";
+// $sname= "localhost";
 
-$unmae= "root";
+$host = 'db';
+$db = 'database-name';
+$user = 'username';
+$pass = 'password';
+$port = '3306';
 
-$password = "";
+// $unmae= "root";
 
-$db_name = "vaccination_db";
+// $password = "";
 
-$conn = mysqli_connect($sname, $unmae, $password, $db_name);
+// $db_name = "vaccination_db";
 
-if (!$conn) {
+$conn = new mysqli($host, $user, $pass, $db, $port);
 
-    echo "Connection failed!";
-
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
+
+
+
+// $conn = mysqli_connect($sname, $unmae, $password, $db_name);
+
+// if (!$conn) {
+
+//     echo "Connection failed!";
+
+// }

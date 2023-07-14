@@ -3,9 +3,9 @@
 // $sname= "localhost";
 
 $host = 'db';
-$db = 'database-name';
-$user = 'username';
-$pass = 'password';
+$db = 'vaccination_db';
+$user = 'root';
+$pass = '';
 $port = '3306';
 
 // $unmae= "root";
